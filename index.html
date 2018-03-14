@@ -6,11 +6,92 @@
     <title>TodoApp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
+    <!--     <style type="text/css">
+        body
+        {
+            overflow-y: scroll; overflow-x:hidden;
+        }
+        span
+        {
+            font-size: 22px;
+            padding-right: 5px;
+            color: #FFF;
+        }
+        .submitButton
+        {
+            font-size: 20px;
+            height: 55px;
+            vertical-align: top;
+        }
+        .headerDiv
+        {
+            height: auto;            
+            background: #C15D63;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .textBox
+        {
+            border-radius: 5px;
+            border: 2px solid #FFF;
+        }
+        
+        .displayToDo
+        {
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            height: Auto;
+            width: 200px;
+            color: #ffffff;
+            float: left;
+            margin: 10px;
+            padding: 10px;
+        }
+    </style> -->
+    <script type="text/javascript">
+    // var listItems = [],
+    // form = document.querySelector('.form'),
+    // input = document.querySelector('.input'),
+    // list = document.querySelector('.list');
+    // date = document.querySelector('.date');
+    // category = document.querySelector('.category');
+
+    // function renderItem(item) {
+    //   var li = document.createElement('li');
+    //   li.innerHTML = item.category + ". " + item.title + " Due: " + item.date;
+    //   list.appendChild( li );
+    // }
+
+    // function renderAll() {
+    //   list.innerHTML = '';
+    //   for (var i = 0; i < listItems.length; i++) {
+    //     renderItem(listItems[i]);
+    //   }
+    // }
+
+    // form.onsubmit = function() { 
+    //   var newItem = {
+    //     title: input.value,
+    //     date: date.value,
+    //     category: category.value
+    //   }
+    //   listItems.push(newItem);
+    //   renderAll();
+
+    //   input.value = '';
+    //   date.value = '';
+    //   category.value = '';
+    //   return false;
+    // };
+    // renderAll();
+    </script>
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-inverse" id="my-navbar">
@@ -22,43 +103,157 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">TodoApp</a>
                     </div>
                     <div class="collapse navbar-collapse" id="navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="src/auth/login.html">Login</a></li>
-                            <li><a href="src/auth/login.html">TodoList</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="src/auth/register.html">Register</a></li>
-                            <li><a href="Loginpage">Logout</a></li>
-                        </ul>
+                        <div class="pull-left">
+                            <ul class="nav navbar-nav nav-left">
+                                <li><a href="#" onclick="toggleVisibility('Menu1');" style="font-size: 30px;">Home</a></li>
+                                <li><a href="#" onclick="toggleVisibility('Menu2');">Login</a></li>
+                                <li><a href="#" onclick="toggleVisibility('Menu3');">Todolist</a></li>
+                            </ul>
+                        </div>
+                        <div class="pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#" onclick="toggleVisibility('Menu4');">Register</a></li>
+                                <li><a href="#" onclick="logout();">Logout</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <h2>Login Form</h2>
-        <form action="/action_page.php">
-            <div class="imgcontainer">
-                <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    <div id="main_content">
+        <div class="container">
+            <div id="Menu1">
+                <div class="banner">
+                    <div class="container">
+                        <div class="centered">
+                            <h3>Main JS Page</h3>
+                            <p>Learning Javascript Small Web Application Development with Local Storage</p>
+                            <br>
+                            <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="container">
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
-                <button type="submit">Login</button>
-                <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label>
+            <div id="Menu2" style="display: none;">
+                <!--  <div id="main">
+                    <h2 align="center">Login</h2>
+                    <div id="row loginError" style="color:red"></div>
+                    <div id="row loginSucess" style="color:red"></div>
+                    <div id="row" style="color:black">
+                        <div class="col">Email: </div>
+                        <div class="col">
+                            <input type="text" id="email" value="" />
+                        </div>
+                    </div>
+                    <div id="row" style="color:black">
+                        <div class="col">Password: </div>
+                        <div class="col">
+                            <input type="password" id="password" value="" />
+
+                        </div>
+                    </div>
+
+                    <div id="row" style="color:black">
+                        <div class="col">
+                            <input type="button" id="btnSubmit" value="Submit" onclick="ValidateLoginForm()" />
+                            <input type="reset" id="btnReset" value="Reset" />
+                        </div>
+                    </div>
+                </div> -->
+                <div class="login-form col-sm-6 col-sm-offset-3 form-bg">
+                    <h2 align="center">Login</h2>
+                    <span id="loginError" style="color:red"></span>
+                    <span id="loginSucess" style="color:green"></span>
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" class="form-control" id="email" value="">
+                        <span id="blankError" style="color:red"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="password" value="">
+                        <span id="blankError" style="color:red"></span>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Remember me</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="btnSubmit" value="Submit" onclick="ValidateLoginForm()">Submit</button>
+                    <button type="reset" id="btnReset" class="btn btn-primary">Reset</button>
+                </div>
             </div>
-            <div class="container" style="background-color:#f1f1f1">
-                <button type="button" class="cancelbtn">Cancel</button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
+            <div id="Menu3" style="display: none;">
+                <div id="main">
+                    <h2 align="center">Todolist</h2>
+                </div>
             </div>
-        </form>
+            <div id="Menu4" style="display: none;">
+                <div id="main">
+                    <h2 align="center">Registration</h2>
+                    <div id="row" style="color:black">
+                        <div class="col">First Name: </div>
+                        <div class="col">
+                            <input type="text" id="firstname" placeholder="Enter your firstname" value="" />
+                        </div>
+                        <div class="col" id="error" style="color:red"></div>
+                    </div>
+                    <div id="row" style="color:black">
+                        <div class="col">Last Name: </div>
+                        <div class="col">
+                            <input type="text" id="lastname" placeholder="Enter your lastname" value="" />
+                        </div>
+                        <div class="col" id="error1" style="color:red"></div>
+                    </div>
+                    <div id="row" style="color:black">
+                        <div class="col">Email: </div>
+                        <div class="col">
+                            <input type="text" id="email" placeholder="Enter your email address" value="" />
+                        </div>
+                        <div class="col" id="error2" style="color:red"></div>
+                    </div>
+                    <div id="row" style="color:black">
+                        <div class="col">Gender:</div>
+                        <div class="col">
+                            <input type="radio" id="gender" value=""> Male
+                        </div>
+                        <div class="col">
+                            <input type="radio" id="gender" value=""> Female
+                        </div>
+                        <div class="col" id="error3" style="color:red"></div>
+                    </div>
+                    <div id="row" style="color:black">
+                        <div class="col">Password: </div>
+                        <div class="col">
+                            <input type="password" id="password" placeholder="Enter your password" value="" />
+                        </div>
+                        <div class="col" id="error4" style="color:red"></div>
+                    </div>
+                    <div id="row" style="color:black">
+                        <div class="col">Confirm Password: </div>
+                        <div class="col">
+                            <input type="password" id="confirm_password" placeholder="Confirm your password" value="" />
+                        </div>
+                        <div class="col" style="color:red" id="error5"></div>
+                    </div>
+                    <div id="row" style="color:black">
+                        <div class="col">Address: </div>
+                        <div class="col">
+                            <textarea id="address" placeholder="Enter your address" value=""></textarea>
+                        </div>
+                        <div class="col" style="color:red" id="error6"></div>
+                    </div>
+                    <div id="row" style="color:black">
+                        <div class="col">
+                            <input type="button" id="btnSubmit" value="Submit" onclick="ValidateRegForm()" />
+                            <input type="reset" id="btnReset" value="Reset" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <footer class="footer">
         <div class="container">
@@ -72,4 +267,6 @@
             </div>
         </div>
     </footer>
+</body>
+
 </html>

@@ -6,90 +6,10 @@
     <title>TodoApp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!--     <style type="text/css">
-        body
-        {
-            overflow-y: scroll; overflow-x:hidden;
-        }
-        span
-        {
-            font-size: 22px;
-            padding-right: 5px;
-            color: #FFF;
-        }
-        .submitButton
-        {
-            font-size: 20px;
-            height: 55px;
-            vertical-align: top;
-        }
-        .headerDiv
-        {
-            height: auto;            
-            background: #C15D63;
-            -moz-border-radius: 5px;
-            border-radius: 5px;
-            padding: 10px;
-        }
-        .textBox
-        {
-            border-radius: 5px;
-            border: 2px solid #FFF;
-        }
-        
-        .displayToDo
-        {
-            -moz-border-radius: 10px;
-            border-radius: 10px;
-            height: Auto;
-            width: 200px;
-            color: #ffffff;
-            float: left;
-            margin: 10px;
-            padding: 10px;
-        }
-    </style> -->
-    <script type="text/javascript">
-    // var listItems = [],
-    // form = document.querySelector('.form'),
-    // input = document.querySelector('.input'),
-    // list = document.querySelector('.list');
-    // date = document.querySelector('.date');
-    // category = document.querySelector('.category');
-
-    // function renderItem(item) {
-    //   var li = document.createElement('li');
-    //   li.innerHTML = item.category + ". " + item.title + " Due: " + item.date;
-    //   list.appendChild( li );
-    // }
-
-    // function renderAll() {
-    //   list.innerHTML = '';
-    //   for (var i = 0; i < listItems.length; i++) {
-    //     renderItem(listItems[i]);
-    //   }
-    // }
-
-    // form.onsubmit = function() { 
-    //   var newItem = {
-    //     title: input.value,
-    //     date: date.value,
-    //     category: category.value
-    //   }
-    //   listItems.push(newItem);
-    //   renderAll();
-
-    //   input.value = '';
-    //   date.value = '';
-    //   category.value = '';
-    //   return false;
-    // };
-    // renderAll();
-    </script>
 </head>
 
 <body>
@@ -108,14 +28,15 @@
                         <div class="pull-left">
                             <ul class="nav navbar-nav nav-left">
                                 <li><a href="#" onclick="toggleVisibility('Menu1');" style="font-size: 30px;">Home</a></li>
-                                <li><a href="#" onclick="toggleVisibility('Menu2');">Login</a></li>
-                                <li><a href="#" onclick="toggleVisibility('Menu3');">Todolist</a></li>
+                                <li><a href="#" onclick="toggleVisibility('Menu2');" id="loginView" style="font-size: 16px;">Login</a></li>
+                                <li><a href="#" onclick="toggleVisibility('Menu3');" style="display: none; font-size: 16px;;" id="loggedProfileView">View Profile</a></li>
+                                <li><a href="#" onclick="toggleVisibility('Menu4');" style="display: none; font-size: 16px;" id="loggedViewTodo">Todolist</a></li>
                             </ul>
                         </div>
                         <div class="pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="#" onclick="toggleVisibility('Menu4');">Register</a></li>
-                                <li><a href="#" onclick="logout();">Logout</a></li>
+                                <li><a href="#" onclick="toggleVisibility('Menu5');" style="font-size: 16px;" id="registerView">Register</a></li>
+                                <li><a href="#" onclick="logout();" style="display: none; font-size: 16px;"  id="LogoutView" >Logout</a></li>
                             </ul>
                         </div>
                     </div>
@@ -138,123 +59,133 @@
                 </div>
             </div>
             <div id="Menu2" style="display: none;">
-                <!--  <div id="main">
-                    <h2 align="center">Login</h2>
-                    <div id="row loginError" style="color:red"></div>
-                    <div id="row loginSucess" style="color:red"></div>
-                    <div id="row" style="color:black">
-                        <div class="col">Email: </div>
-                        <div class="col">
-                            <input type="text" id="email" value="" />
-                        </div>
-                    </div>
-                    <div id="row" style="color:black">
-                        <div class="col">Password: </div>
-                        <div class="col">
-                            <input type="password" id="password" value="" />
-
-                        </div>
-                    </div>
-
-                    <div id="row" style="color:black">
-                        <div class="col">
-                            <input type="button" id="btnSubmit" value="Submit" onclick="ValidateLoginForm()" />
-                            <input type="reset" id="btnReset" value="Reset" />
-                        </div>
-                    </div>
-                </div> -->
                 <div class="login-form col-sm-6 col-sm-offset-3 form-bg">
                     <h2 align="center">Login</h2>
                     <span id="loginError" style="color:red"></span>
                     <span id="loginSucess" style="color:green"></span>
                     <div class="form-group">
                         <label for="email">Email address:</label>
-                        <input type="email" class="form-control" id="email" value="">
+                        <input type="email" class="form-control" id="login_email" value="">
                         <span id="blankError" style="color:red"></span>
                     </div>
                     <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="password" value="">
+                        <input type="password" class="form-control" id="login_password" value="">
                         <span id="blankError" style="color:red"></span>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Remember me</label>
                     </div>
                     <button type="submit" class="btn btn-primary" id="btnSubmit" value="Submit" onclick="ValidateLoginForm()">Submit</button>
                     <button type="reset" id="btnReset" class="btn btn-primary">Reset</button>
                 </div>
             </div>
-            <div id="Menu3" style="display: none;">
-                <div id="main">
-                    <h2 align="center">Todolist</h2>
+            <div id="Menu3" style="display: none;" >
+                <h2 align="center">User Profile</h2>
+                <div class="user-profile-form col-sm-6 col-sm-offset-3 form-bg">
+                    <div class="col-sm-6 col-md-4">
+                        <label for="profile_image">Profile Pic:</label><br>
+                        <img id="userProfile" src="#" alt="" class="img-rounded img-responsive" /><br>
+                        <input id="p_image" type="file" name="p_image" accept="image/x-png,image/gif,image/jpeg" onchange="userprofilePageServices.changeUserProfileImage(this);" required/>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="col-sm-6 col-md-10">
+                        <form>
+                            <div class="form-group">
+                                <label for="firstname"><b>First name</b></label>
+                                <input id="firstname" type="text" placeholder="Enter first name" name="firstname" onchange="userprofilePageServices.changeFName(this);" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname"><b>Last name</b></label>
+                                <input id="lastname" type="text" placeholder="Enter last name" name="lastname" onchange="userprofilePageServices.changeLName(this);" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="gender"><b>Gender</b></label>
+                                <div id="gender_group">
+                                    <input type="radio" id="Male" value="Male" onclick='userprofilePageServices.changeGender(this)' name="gender"> Male
+                                    <br>
+                                    <input type="radio" id="Female" value="Female" onclick='userprofilePageServices.changeGender(this)' name="gender"> Female
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address"><b>Address</b></label>
+                                <textarea id="address" name="address" placeholder="Enter your address" rows="4" cols="50" onchange="userprofilePageServices.changeAddr(this);" class="form-control" required="required"></textarea>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             <div id="Menu4" style="display: none;">
                 <div id="main">
-                    <h2 align="center">Registration</h2>
-                    <div id="row" style="color:black">
-                        <div class="col">First Name: </div>
-                        <div class="col">
-                            <input type="text" id="firstname" placeholder="Enter your firstname" value="" />
-                        </div>
-                        <div class="col" id="error" style="color:red"></div>
-                    </div>
-                    <div id="row" style="color:black">
-                        <div class="col">Last Name: </div>
-                        <div class="col">
-                            <input type="text" id="lastname" placeholder="Enter your lastname" value="" />
-                        </div>
-                        <div class="col" id="error1" style="color:red"></div>
-                    </div>
-                    <div id="row" style="color:black">
-                        <div class="col">Email: </div>
-                        <div class="col">
-                            <input type="text" id="email" placeholder="Enter your email address" value="" />
-                        </div>
-                        <div class="col" id="error2" style="color:red"></div>
-                    </div>
-                    <div id="row" style="color:black">
-                        <div class="col">Gender:</div>
-                        <div class="col">
-                            <input type="radio" id="gender" value=""> Male
-                        </div>
-                        <div class="col">
-                            <input type="radio" id="gender" value=""> Female
-                        </div>
-                        <div class="col" id="error3" style="color:red"></div>
-                    </div>
-                    <div id="row" style="color:black">
-                        <div class="col">Password: </div>
-                        <div class="col">
-                            <input type="password" id="password" placeholder="Enter your password" value="" />
-                        </div>
-                        <div class="col" id="error4" style="color:red"></div>
-                    </div>
-                    <div id="row" style="color:black">
-                        <div class="col">Confirm Password: </div>
-                        <div class="col">
-                            <input type="password" id="confirm_password" placeholder="Confirm your password" value="" />
-                        </div>
-                        <div class="col" style="color:red" id="error5"></div>
-                    </div>
-                    <div id="row" style="color:black">
-                        <div class="col">Address: </div>
-                        <div class="col">
-                            <textarea id="address" placeholder="Enter your address" value=""></textarea>
-                        </div>
-                        <div class="col" style="color:red" id="error6"></div>
-                    </div>
-                    <div id="row" style="color:black">
-                        <div class="col">
-                            <input type="button" id="btnSubmit" value="Submit" onclick="ValidateRegForm()" />
-                            <input type="reset" id="btnReset" value="Reset" />
-                        </div>
-                    </div>
+                    <h2 align="center">TodoList</h2>
                 </div>
+            </div>
+            <div id="Menu5" style="display: none;">
+                <form id="registration_form" method="post" action="#">
+                    <div class="col-sm-6 col-sm-offset-3 form-bg">
+                        <h2 align="center">Registration</h2>
+                        <div class="form-group">
+                            <label for="firstname">First Name:</label>
+                            <input type="text" class="form-control" id="firstname" placeholder="Enter your firstname" value="" required>
+                            <span id="firstname_error" style="color:red"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Last Name:</label>
+                            <input type="text" class="form-control" id="lastname" placeholder="Enter your lastname" value="" required>
+                            <span id="lastname_error" style="color:red"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="text" class="form-control" id="email" placeholder="Enter your email address" value="" required>
+                            <span id="incorrect_email" style="color:red"></span>
+                            </br>
+                            <span id="emailError" style="color:red"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Gender</label>
+                            <div class="controls">
+                                <label class="radio inline" for="gender-0">
+                                  <input name="gender" id="gender-0" value="male" checked="checked" type="radio">
+                                  Male
+                                </label>
+                                <label class="radio inline" for="gender-1">
+                                  <input name="gender" id="gender-1" value="female" type="radio">
+                                  Female
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password" value="" required>
+                            <!-- <span id="password_error" style="color:red"></span> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Confirm Password:</label>
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm your password" value="" required>
+                            <span id="confirm_passworderror" style="color:red"></span>
+                            <!-- <span id="error6" style="color:red"></span> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <textarea class="form-control" id="address" placeholder="Enter your address" value="" required="required"></textarea>
+                            <span id="error7" style="color:red"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="profile_image">Profile Pic:</label><br>
+                            <input id="p_image" type="file" name="p_image" accept="image/x-png,image/gif,image/jpeg" onchange="registrationServices.setProfileImage(this);" required/>
+                            <span id="profile_imageError" style="color:red"></span>
+                            <img id="profile_img" alt="profile image" hidden="hidden" />
+                        </div>
+                        <div class="clearfix">
+                            <button type="button" class="btn btn-warning">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </div>
+                <form>
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="js/register.js"></script>
+    <script type="text/javascript" src="js/localStorage.js"></script>
+    <script type="text/javascript" src="js/userprofile.js"></script>
     <footer class="footer">
         <div class="container">
             <div class="row">
